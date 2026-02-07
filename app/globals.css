@@ -1,15 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-luxury-black: #050505;
-  --color-luxury-gold: #D4AF37;
-  --color-luxury-purple: #2E0249;
-  --color-luxury-dark-gray: #0A0A0C;
+  --color-crave-bg: #020617;
+  --color-crave-accent: #10b981;
+  --color-crave-text: #ffffff;
   --font-sans: var(--font-inter);
 }
 
 :root {
-  --background: #050505;
+  --background: #020617;
   --foreground: #ffffff;
 }
 
@@ -17,6 +16,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
+  antialiased: true;
 }
 
 /* Custom scrollbar hiding */

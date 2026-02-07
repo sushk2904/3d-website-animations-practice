@@ -1,15 +1,25 @@
 "use client";
 
-import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-export default function ImageSequence() {
+interface ImageSequenceProps {
+    folderPath?: string;
+    frameCount?: number;
+    filePrefix?: string;
+    className?: string; // Allow custom styling positioning
+}
+
+export default function ImageSequence({
+    folderPath = "/food_bowl_animation",
+    frameCount = 240,
+    filePrefix = "ezgif-frame-",
+    className = ""
+}: ImageSequenceProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [images, setImages] = useState<HTMLImageElement[]>([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const { scrollYProgress } = useScroll();
-
-    const frameCount = 240;
 
     // Preload images
     useEffect(() => {
@@ -19,8 +29,9 @@ export default function ImageSequence() {
         for (let i = 1; i <= frameCount; i++) {
             const img = new Image();
             // Adjust padding for filenames: ezgif-frame-001.jpg
+            // Assuming 3 digits padding based on previous file inspection
             const frameIndex = i.toString().padStart(3, "0");
-            img.src = `/headphones/ezgif-frame-${frameIndex}.jpg`;
+            img.src = `${folderPath}/${filePrefix}${frameIndex}.jpg`;
             img.onload = () => {
                 loadedCount++;
                 if (loadedCount === frameCount) {
@@ -30,7 +41,7 @@ export default function ImageSequence() {
             loadedImages.push(img);
         }
         setImages(loadedImages);
-    }, []);
+    }, [folderPath, frameCount, filePrefix]);
 
     // Draw frame based on scroll
     const renderFrame = (index: number) => {
@@ -93,7 +104,7 @@ export default function ImageSequence() {
     }, [isLoaded, scrollYProgress]);
 
     return (
-        <div className="sticky top-0 h-screen w-full overflow-hidden bg-luxury-black">
+        <div className={`sticky top-0 h-screen w-full overflow-hidden bg-luxury-black ${className}`}>
             <canvas
                 ref={canvasRef}
                 className="block w-full h-full object-cover"
