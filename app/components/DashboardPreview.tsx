@@ -135,25 +135,25 @@ export default function SpatialInterface() {
                 style={{ rotateX, rotateY }}
                 className="relative w-full max-w-6xl h-[80vh] flex items-center justify-center z-10 preserve-3d"
             >
-                {/* --- Widget 1: Live Pulse (Top Left) --- */}
+                {/* --- Widget 1: Live Pulse (Left Wing) --- */}
                 <FloatingCard
-                    className="w-64 h-40 top-[10%] left-[15%]"
+                    className="w-64 h-40 left-[2%] lg:left-[10%] top-1/2 -translate-y-1/2"
                     delay={0.1}
                 >
                     <PulseMetric />
                 </FloatingCard>
 
-                {/* --- Widget 2: Flavor Network (Right Center) --- */}
+                {/* --- Widget 2: Flavor Network (Right Wing) --- */}
                 <FloatingCard
-                    className="w-72 h-72 top-[20%] right-[10%]"
+                    className="w-72 h-72 right-[2%] lg:right-[10%] top-1/2 -translate-y-1/2"
                     delay={0.2}
                 >
                     <FlavorNetwork />
                 </FloatingCard>
 
-                {/* --- Widget 3: Predictive Card (Bottom Left) --- */}
+                {/* --- Widget 3: Predictive Card (Bottom Center) --- */}
                 <FloatingCard
-                    className="w-80 h-24 bottom-[20%] left-[20%]"
+                    className="w-80 h-24 bottom-[5%] lg:bottom-[10%] left-1/2 -translate-x-1/2"
                     delay={0.3}
                 >
                     <PredictiveCard />
